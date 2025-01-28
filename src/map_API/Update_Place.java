@@ -8,8 +8,7 @@ import static org.hamcrest.Matchers.*;
 
 import files.payLoad;
 
-public class ADD_Place {
-    // Validate if Add API is working as expected
+public class Update_Place {// update the place with new address
     public static void main(String[] args) throws InterruptedException {
         //given : all input details
     	//when : submit the API - resource, http method
@@ -33,7 +32,15 @@ public class ADD_Place {
         JsonPath jsonPath = new JsonPath(response); // for parsing json
         String placeId = jsonPath.getString("place_id");
         System.out.println(placeId);
-         
+        given().log().all().queryParam("key", "qaclick123").header("Content-Type","application/json")
+        .body("{\r\n"
+        		+ "\"place_id\":\""+placeId+"\",\r\n"
+        		+ "\"address\":\"70 Summer walk, USA\",\r\n"
+        		+ "\"key\":\"qaclick123\"\r\n"
+        		+ "}")
+        .when().put("maps/api/place/update/json")
+        .then().assertThat().log().all().statusCode(200).body("msg", equalTo("Address successfully updated"));
+     
         
         
     }
