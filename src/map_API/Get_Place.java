@@ -8,6 +8,7 @@ import static org.hamcrest.Matchers.*;
 
 import org.testng.Assert;
 
+import files.ReusableMethods;
 import files.payLoad;
 
 public class Get_Place {
@@ -55,7 +56,7 @@ public class Get_Place {
         // Step 3: Get Place
         String getPlaceResponse = given().log().all()
             .queryParam("key", "qaclick123")
-            .queryParam("place_id", placeId)  // Corrected here
+            .queryParam("place_id", placeId)  
         .when()
             .get("maps/api/place/get/json")
         .then()
@@ -64,9 +65,10 @@ public class Get_Place {
             .statusCode(200)
             .extract().response().asString();
 
-        JsonPath jsonPath2 = new JsonPath(getPlaceResponse);
+        JsonPath jsonPath2 = ReusableMethods.rawToJson(getPlaceResponse);
         String actualAddress = jsonPath2.getString("address");
         System.out.println("Actual Address: " + actualAddress);
-        Assert.assertEquals(actualAddress, newAddress);
+        System.out.println("New Address: " + newAddress);
+        Assert.assertEquals(actualAddress, newAddress);//testNG assertion
     }
 }
