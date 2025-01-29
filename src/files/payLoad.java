@@ -44,22 +44,14 @@ public class payLoad {
 				+ "  ]\r\n"
 				+ "}";
 	}
+	public static String Addbook() {
+		String payLoadBook = "{\r\n"
+				+ "\"name\":\"Learn Appium Automation with Java\",\r\n"
+				+ "\"isbn\":\"bcd\",\r\n"
+				+ "\"aisle\":\"227\",\r\n"
+				+ "\"author\":\"John foe\"\r\n"
+				+ "}";
+		return payLoadBook;
+	}
 
 }
-
-
-
-
-/*
-1. Print No of courses returned by API
-
-2.Print Purchase Amount
-
-3. Print Title of the first course
-
-4. Print All course titles and their respective Prices
-
-5. Print no of copies sold by RPA Course
-
-6. Verify if Sum of all Course prices matches with Purchase Amount
-*/
