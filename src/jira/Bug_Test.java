@@ -5,6 +5,8 @@ import io.restassured.path.json.JsonPath;
 
 import static io.restassured.RestAssured.*;
 
+import java.io.File;
+
 //46
 public class Bug_Test {
 	public static void main(String[] args) {
@@ -18,7 +20,7 @@ public class Bug_Test {
 				+ "       {\r\n"
 				+ "          \"key\": \"SCRUM\"\r\n"
 				+ "       },\r\n"
-				+ "       \"summary\": \"MenuItems are not working - Automation\",\r\n"
+				+ "       \"summary\": \"image are not working - Automation-attachment\",\r\n"
 				+ "       \"issuetype\": {\r\n"
 				+ "          \"name\": \"Bug\"\r\n"
 				+ "       }\r\n"
@@ -30,6 +32,12 @@ public class Bug_Test {
 		JsonPath jsonPath = new JsonPath(createIssueResponse);
 		String issueID = jsonPath.getString("id");
 		System.out.println(issueID);
+		given().pathParam("key",issueID)
+		.header("X-Atlassian-Token","no-check")
+		.header("Authorization","Basic c3Jpa2FudGh2MTcwOUBnbWFpbC5jb206QVRBVFQzeEZmR0YwTld5S0VTUjFzZFRseDc1RHliVVpHR3dLSjlkTHRzQmk1SEU2TVBFRzNDdmROZ0xIb1pFYzRaQkZWVVgxYXlHM04zVHdTWUlCMldDUHhXUThwLVNEbE44M1hFRjZIdUJ1amlUZkczVWY5QlhhWlg1OFpWWW9sVmtPejNMeVZuODhudlNhZDNfMUo1NWx1QnZmdEhOVlltcGtiYld4ZXhpNVVDUWxQZUFDbkNVPTJBOUU4MjI0")
+		.multiPart("file",new File("C:\\Rest_Course\\screen.png")).log().all()
+		.post("/rest/api/3/issue/{key}/attachments")
+		.then().log().all().assertThat().statusCode(200);
 	}
 
 }
