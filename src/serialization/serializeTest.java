@@ -1,4 +1,4 @@
-package serilization;
+package serialization;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -27,7 +27,7 @@ public class serializeTest {
 		Location location = new Location();
 		location.setLat(-38.383494);
 		location.setLng(33.427362);
-		addPlace.setLoction(location);
+		addPlace.setLocation(location);
 		Response response = given().queryParam("key", "qaclick123")
 				.body(addPlace).when()
 				.post("/maps/api/place/add/json").then().assertThat().statusCode(200).extract().response();

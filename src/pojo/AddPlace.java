@@ -9,9 +9,8 @@ public class AddPlace {
 	private String address;
 	private String website;
 	private String language;
-	private Location loction;
+	private Location location;
 	private List<String> types;
-	
 	public int getAccuracy() {
 		return accuracy;
 	}
@@ -48,11 +47,11 @@ public class AddPlace {
 	public void setLanguage(String language) {
 		this.language = language;
 	}
-	public Location getLoction() {
-		return loction;
+	public Location getLocation() {
+		return location;
 	}
-	public void setLoction(Location loction) {
-		this.loction = loction;
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 	public List<String> getTypes() {
 		return types;
@@ -60,5 +59,4 @@ public class AddPlace {
 	public void setTypes(List<String> types) {
 		this.types = types;
 	}
-	
 }
