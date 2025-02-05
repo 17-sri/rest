@@ -2,6 +2,8 @@ package pojo;
 
 public class EComLoginRequest {
 	String userEmail;
+	String userPassword;
+	
 	public String getUserEmail() {
 		return userEmail;
 	}
@@ -14,6 +16,6 @@ public class EComLoginRequest {
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
-	String userPassword;
+	
 
 }

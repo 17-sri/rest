@@ -20,8 +20,8 @@ public class ECommerceAPITest {
 		RequestSpecification reqLogin = given().log().all().spec(req).body(ecomLoginRequest);
 		EComLoginResponse loginResponse = reqLogin.when().post("/api/ecom/auth/login").then().log().all().extract()
 				.response().as(EComLoginResponse.class);
-		System.out.println(loginResponse.getToken());
-		System.out.println(loginResponse.getUserID());
+		System.out.println("THE TOKEN IS   :   "+ loginResponse.getToken());
+		System.out.println("THE USERID IS   :   "+ loginResponse.getUserId());
 
 	}
 
