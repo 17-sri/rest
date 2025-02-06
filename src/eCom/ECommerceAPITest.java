@@ -15,6 +15,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.testng.Assert;
+
 public class ECommerceAPITest {
 
 	public static void main(String[] args) {// 70
@@ -59,6 +61,15 @@ public class ECommerceAPITest {
 		String responseAddOrder = createOrderReq.when().post("/api/ecom/order/create-order").then().log().all()
 				.extract().response().asString();
 		System.out.println("product ordered Id is   " + responseAddOrder);
+		RequestSpecification deleteorderBaseReq = new RequestSpecBuilder().setBaseUri("https://rahulshettyacademy.com")
+				.addHeader("authorization", token).setContentType(ContentType.JSON).build();//73
+		RequestSpecification deleteProdReq = given().log().all().spec(deleteorderBaseReq).pathParam("productId", productId);
+		String deleteProductResponse = deleteProdReq.when().delete("/api/ecom/product/delete-product/{productId}").then().log().all().extract().response().asString();
+		JsonPath jsonPath2 = new JsonPath(deleteProductResponse);
+		Assert.assertEquals("Product Deleted Successfully", jsonPath2.get("message"));
+	
+	
+	
 	}
 
 }
